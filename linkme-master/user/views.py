@@ -12,6 +12,16 @@ from django.contrib.auth.models import User
 
 class UserHome(CreateView):
     template_name="home.html"
-    form_class=Profileform
-    model=Profile
+    form_class=PostForm
+    model=Posts
     success_url=reverse_lazy("Homepage")
+    def form_valid(self, form):
+        form.instance.user=self.request.user
+        messages.success(self.request,'Post Uploaded')
+        self.object=form.save()
+        return super().form_valid(form)
+       
+    def get_context_data(self, **kwargs):
+            context=super().get_context_data(**kwargs)
+            context["Feed"]=Posts.objects.all()
+            return context
