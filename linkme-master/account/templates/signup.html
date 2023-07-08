@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+      <form action="" method="post">
+        {% csrf_token %}
+    <div class="input-box">
+        {{form.first_name.errors}}
+        <label class="form-label" for="{{form.first_name.id_for_label}}">first name</label>
+        {{form.first_name}}
+      </div>
+      <div class="input-box">
+        {{form.last_name.errors}}
+        <label class="form-label" for="{{form.last_name.id_for_label}}">last name</label>
+        {{form.last_name}}
+      </div>
+      <div class="input-box">
+        {{form.email.errors}}
+        <label class="form-label" for="{{form.email.id_for_label}}">email </label>
+        {{form.email}}
+      </div>
+      <div class="input-box">
+        {{form.username.errors}}
+        <label class="form-label" for="{{form.username.id_for_label}}">username </label>
+        {{form.username}}
+      </div>
+      <div class="input-box">
+        {{form.password1.error}}
+        <label class="form-label" for="{{form.password1.id_for_label}}">create pasword </label>
+        {{form.password1}}
+        
+      </div>
+      <div class="input-box">
+        {{form.password2.error}}
+        <label class="form-label" for="{{form.password2.id_for_label}}">confirm pasword </label>
+        {{form.password2}}
+      </div>
+      <div class="text-center">
+        <button class=" btn btn-info">signup</button>
+      </div>
+    </form>
+  </body>
+</html>
