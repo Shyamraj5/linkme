@@ -8,12 +8,8 @@ class Profileform(forms.ModelForm):
 
         exclude = ["user"]
         widjets={
-            "name":forms.TextInput(attrs={"class":"form-control"}),
-            "bio":forms.TextInput(attrs={"class":"form-control"}),
-            "gender":forms.Select(attrs={"class":"form-control"}),
+            "bio":forms.TextInput(attrs={"class":"form-control","type":"textarea"}),
             "image":forms.FileInput()
-            
-
         }
 
 class PostForm(forms.ModelForm):
