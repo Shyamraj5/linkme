@@ -19,7 +19,7 @@ button {
     word-spacing: -2px;
   }
   
-  @keyframes movingBorders {
+  /* @keyframes movingBorders {
     0% {
       border-color: #fce4e4;
     }
@@ -81,4 +81,4 @@ button {
   button:hover .filled {
     opacity: 1;
     animation: beatingHeart 1.2s infinite;
-  }
+  } */

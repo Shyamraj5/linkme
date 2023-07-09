@@ -20,3 +20,11 @@ class PostForm(forms.ModelForm):
             "Image":forms.FileInput(),
             "caption":forms.TextInput(),
         }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model=Comments
+        fields =["comment"]
+        widgets={
+            "comment":forms.Textarea(attrs={"class":"form-control"}),
+        }
