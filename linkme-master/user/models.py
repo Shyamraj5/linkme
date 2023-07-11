@@ -5,6 +5,15 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,related_name="Profile")
     bio=models.CharField(max_length=100)
     profile_picture = models.ImageField(upload_to='Dp' )
+    folower=models.ManyToManyField(User,related_name="follow")
+    @property
+    def allfollower(self):
+        return self.folower
+    def followeduser(self):
+        fl=self.follower.all()
+        users=[u.username for u in fl]
+        return users
+
     def __str__(self):
         return self.user
     

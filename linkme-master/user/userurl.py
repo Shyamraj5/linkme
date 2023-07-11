@@ -11,6 +11,8 @@ urlpatterns = [
     path("EditBio/<int:id>",BioEdit.as_view(),name="EditBio"),
     path("Comment/<int:cid>",addcomment,name="cmnt"),
     path("logout/",LogOut.as_view(),name='logout'),
+    
+    # path("liked/<int:fid>",addfollow,name="follow"),
 
 
 ]

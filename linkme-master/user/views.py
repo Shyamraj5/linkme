@@ -83,6 +83,16 @@ class ProfileView(CreateView):
         print("saved")
         messages.success(self.request,"Profile Updated")
         return super().form_valid(form)
+    def get_context_data(self, **kwargs):
+          
+            context=super().get_context_data(**kwargs)
+            context["posts"]=Posts.objects.filter(user=self.request.user)
+            
+            return context
+# def profile2(request):
+#         user = request.user
+#         posts = Posts.objects.filter(user=user).order_by('-timestamp')
+#         return render(request, 'profile.html', {'posts': posts})
 
 
 def addlike(req,*args, **kwargs):
@@ -119,6 +129,22 @@ class BioEdit(UpdateView):
 #             return redirect("pr")
 #         else:
 #             return render(request,"profile.html",{"datas":form_pdata})
+
+# def addfollow(req,*args, **kwargs):
+#     fid=kwargs.get("fid")
+#     follow=Profile.objects.get(id=fid)
+#     user=req.user
+#     follow.follower.add(user)
+#     follow.save()
+#     return redirect ("Homepage")
+
+# def followers(request):
+#     profile = Profile.objects.get(user=request.user)
+#     followers = profile.all()
+#     followers_count = profile.followers_count()
+#     return render(request, 'followers.html', {'followers': followers, 'followers_count': followers_count})
+
+
 
 class LogOut(View):
     def get(self,req):
