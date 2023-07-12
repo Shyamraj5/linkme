@@ -87,8 +87,18 @@ class ProfileView(CreateView):
           
             context=super().get_context_data(**kwargs)
             context["posts"]=Posts.objects.filter(user=self.request.user)
+            context["follow"]= Profile.objects.all()
             
             return context
+    
+def following(req,*args, **kwargs):
+    fid=kwargs.get("fid")
+    post=Profile.objects.get(id=fid)
+    user=req.user
+    post.folower.add(user)
+    post.save()
+    return redirect ("Homepage")
+
 # def profile2(request):
 #         user = request.user
 #         posts = Posts.objects.filter(user=user).order_by('-timestamp')

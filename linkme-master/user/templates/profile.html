@@ -58,6 +58,7 @@
 					<div class="px-4 pt-0 pb-4 cover">
 						<div class="media align-items-end profile-head">
 							{% if request.user.Profile %}
+							
 							<div class="profile mr-3">
 								<img src="{{ user.Profile.profile_picture.url }}" alt="..."width="130" class="rounded mb-2 img-thumbnail">
 									<button><a href="{% url 'EditBio' request.user.Profile.id %}"
@@ -82,8 +83,7 @@
 					<div class="bg-light p-4 d-flex justify-content-end text-center">
 						
 <button type="button" class="button">
-	<span class="button__text">Follow</span>
-	<span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span><a href="{% url 'follow' i.id % }"></a>
+	<a href="{% url 'follow' user.Profile.id %}">Follow</a>
   </button>
 						<ul class="list-inline mb-0">
 							<li class="list-inline-item">
@@ -91,7 +91,7 @@
 										class="fas fa-image mr-1"></i>Photos</small>
 							</li>
 							<li class="list-inline-item">
-								<h5 class="font-weight-bold mb-0 d-block">745</h5><small class="text-muted"> <i
+								<h5 class="font-weight-bold mb-0 d-block">{{ user.Profile.allfollower.count }} </h5><small class="text-muted"> <i
 										class="fas fa-user mr-1"></i>Followers</small>
 							</li>
 							<li class="list-inline-item">
