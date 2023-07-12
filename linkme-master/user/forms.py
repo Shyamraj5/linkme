@@ -6,8 +6,8 @@ class Profileform(forms.ModelForm):
     class Meta:
         model=Profile
 
-        exclude = ["user"]
-        widjets={
+        exclude = ["user","folower"]
+        Widgets={
             "bio":forms.TextInput(attrs={"class":"form-control","type":"textarea"}),
             "image":forms.FileInput()
         }
