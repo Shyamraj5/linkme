@@ -91,13 +91,13 @@ class ProfileView(CreateView):
             
             return context
     
-def following(req,*args, **kwargs):
-    fid=kwargs.get("fid")
-    post=Profile.objects.get(id=fid)
-    user=req.user
-    post.folower.add(user)
-    post.save()
-    return redirect ("Homepage")
+# def following(req,*args, **kwargs):
+#     fid=kwargs.get("fid")
+#     post=Profile.objects.get(id=fid)
+#     user=req.user
+#     post.folower.add(user)
+#     post.save()
+#     return redirect ("Homepage")
 
 # def profile2(request):
 #         user = request.user

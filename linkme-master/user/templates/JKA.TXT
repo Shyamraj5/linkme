@@ -1,0 +1,5 @@
+<a href="{% url 'follow' i.user.id %}" class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600"> Follow </a>
+
+<button type="button" class="button">
+	<a href="{% url 'follow' user.Profile.id %}">Follow</a>
+  </button>
