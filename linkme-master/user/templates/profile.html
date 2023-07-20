@@ -82,7 +82,9 @@
 					</div>
 					<div class="bg-light p-4 d-flex justify-content-end text-center">
 						
-
+						<button type="button" class="button" style="width: 60px;border-style:ridge;">
+							<a href="{% url 'follow' user.Profile.id %}">Follow</a>
+						  </button>
 						<ul class="list-inline mb-0">
 							<li class="list-inline-item">
 								<h5 class="font-weight-bold mb-0 d-block">215</h5><small class="text-muted"> <i
@@ -93,7 +95,7 @@
 										class="fas fa-user mr-1"></i>Followers</small>
 							</li>
 							<li class="list-inline-item">
-								<h5 class="font-weight-bold mb-0 d-block">340</h5><small class="text-muted"> <i
+								<h5 class="font-weight-bold mb-0 d-block">{{ allfollower.count }} </h5><small class="text-muted"> <i
 										class="fas fa-user mr-1"></i>Following</small>
 							</li>
 						</ul>

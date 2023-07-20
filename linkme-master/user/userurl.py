@@ -12,7 +12,7 @@ urlpatterns = [
     path("Comment/<int:cid>",addcomment,name="cmnt"),
     path("logout/",LogOut.as_view(),name='logout'),
     
-    # path("follow/<int:fid>",following,name="follow"),
+    path("follow/<int:fid>",following,name="follow"),
 
 
 ]
