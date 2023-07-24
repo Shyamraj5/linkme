@@ -28,3 +28,13 @@ class CommentForm(forms.ModelForm):
         widgets={
             "comment":forms.Textarea(attrs={"class":"form-control"}),
         }
+class UserSearchForm(forms.Form):
+    query = forms.CharField(max_length=100)
+
+
+class CPForm(forms.Form):
+    cp=forms.CharField(max_length=100,label="Current Password",widget=forms.PasswordInput)
+    np=forms.CharField(max_length=100,label="New Password",widget=forms.PasswordInput)
+    cnp=forms.CharField(max_length=100,label="Confirm Password",widget=forms.PasswordInput)
+
+

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import render,redirect
-from django.views.generic import View,TemplateView,CreateView,UpdateView,FormView,DeleteView
+from django.views.generic import View,TemplateView,CreateView,UpdateView,FormView,DeleteView,ListView
 from django.contrib.auth import logout,authenticate
 from django.contrib.auth.views import PasswordChangeView
 from .forms import *
@@ -37,6 +37,7 @@ class UserHome(CreateView):
             context['cform']=CommentForm()
             context["comments"]=Comments.objects.all()
             return context
+    
     
 def addcomment(request,*args,**kwargs):
     if request.method=="POST":
@@ -87,9 +88,12 @@ class ProfileView(CreateView):
           
             context=super().get_context_data(**kwargs)
             context["posts"]=Posts.objects.filter(user=self.request.user)
+            context["postsc"]=Posts.objects.filter(user=self.request.user).count()
             context["follow"]= Profile.objects.all()
             
             return context
+     
+
     
 def following(req,*args, **kwargs):
     fid=kwargs.get("fid")
@@ -99,10 +103,6 @@ def following(req,*args, **kwargs):
     post.save()
     return redirect ("Homepage")
 
-# def profile2(request):
-#         user = request.user
-#         posts = Posts.objects.filter(user=user).order_by('-timestamp')
-#         return render(request, 'profile.html', {'posts': posts})
 
 
 def addlike(req,*args, **kwargs):
@@ -112,6 +112,11 @@ def addlike(req,*args, **kwargs):
     post.likes.add(user)
     post.save()
     return redirect ("Homepage")
+
+ 
+
+  
+
 
 @method_decorator(signin_required,name='dispatch')
 class BioEdit(UpdateView):
@@ -153,6 +158,74 @@ class BioEdit(UpdateView):
 #     followers = profile.all()
 #     followers_count = profile.followers_count()
 #     return render(request, 'followers.html', {'followers': followers, 'followers_count': followers_count})
+
+#search
+
+
+class search(TemplateView):
+    template_name="search.html"
+
+class ChangePassword(FormView):
+    form_class=CPForm
+    template_name="changepass.html"
+    def post(self,req,*args, **kwargs):
+        form_data=CPForm(data=req.POST)
+        if form_data.is_valid():
+            current=form_data.cleaned_data.get("cp")
+            new=form_data.cleaned_data.get("np")
+            confirm=form_data.cleaned_data.get("cnp")
+            print(current)
+            user=authenticate(req,username=req.user.username,password=current)
+            if user:
+                if new==confirm:
+                    user.set_password(new)
+                    user.save()
+                    messages.success(req,"Password Changed")
+                    logout(req)
+                    return redirect('Homepage')
+                else:
+                    messages.error(req,"Password  mismatched")
+                    return redirect("change")
+            else:
+                messages.error(req,"Incorrect Password")
+                return redirect("change")
+        else:
+            return render(req,"changepass.html",{"form":form_data})
+
+def addfav(request,*args,**kwargs):
+    id=kwargs.get("id")
+    post=Posts.objects.get(id=id)
+    user=request.user
+    if Favposts.objects.filter(fav=post,user=user):
+        messages.warning(request,"Already Added in favorites")
+        return redirect('Homepage')
+    else:
+        Favposts.objects.create(fav=post,user=user)
+        messages.success(request,"added o favourates")
+        return render(request,"fav.html")
+def Delfav(request,*args,**kwargs):
+        id=kwargs.get("id")
+        Favposts.objects.filter(id=id).delete()
+        messages.success(request,"item removed")
+        return redirect("favv")
+
+
+def fav_list(request,**kwargs):
+    
+    fav = Favposts.objects.get(id=1)  # Replace 1 with the actual cart ID
+  
+
+    return render(request, 'fav.html', {'favv': fav})
+
+
+
+class Fav_list(TemplateView):
+    template_name="fav.html"
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context["fav"]=Favposts.objects.filter(user=self.request.user)
+        
+        return context
 
 
 

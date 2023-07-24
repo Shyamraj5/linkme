@@ -26,7 +26,8 @@ class Posts(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="post_user")
     likes=models.ManyToManyField(User,related_name="liked_user")
     DP = models.ForeignKey(Profile,on_delete=models.CASCADE,related_name="user_dp",null=True)
-
+   
+    
     @property
     def allikes(self):
         return self.likes
@@ -41,4 +42,10 @@ class Comments(models.Model):
     datetime=models.DateTimeField(auto_now=True)
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="comment_user")
     post=models.ForeignKey(Posts,on_delete=models.CASCADE,related_name="commented_post")
-    
+
+
+class Favposts(models.Model):
+    fav=models.ForeignKey(Posts,on_delete=models.CASCADE, related_name="favo",)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="uuser",null=True)
+
+

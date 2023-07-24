@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'assets/images/favicon.png' %}" rel="icon" type="image/png">
-    <title>Sign Up - linkme</title>
+    <title>Sign Up - Social Book</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
@@ -32,12 +32,12 @@
                 <div class="flex items-center lg:justify-between justify-around">
 
                     <a href="trending.html">
-                        <b><h1 style="font-size: 1.5rem;">linkme</h1></b>
+                        <b><h1 style="font-size: 1.5rem;">Social Book</h1></b>
                     </a>
 
                     <div class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm">
                         
-                        <a href="{% url 'home' %}" class="bg-pink-500 pink-500 px-6 py-3 rounded-md shadow text-white">Login</a>
+                        <a href="/signin" class="bg-pink-500 pink-500 px-6 py-3 rounded-md shadow text-white">Login</a>
                     </div>
 
                 </div>
@@ -113,9 +113,9 @@
                         <a href="#"> Terms and Conditions</a>
                     </div> -->
                     <div class="text-center">
-                      <button type="submit" class="bg-gradient-to-br from-pink-500 py-3 rounded-md text-white text-xl to-red-400 w-full">signup</button>
+                        <button class=" btn btn-info">signup</button>
                       </div>
-                        <p class="text-base"> Do you have an account? <a href="{% url 'home' %}"> Login </a></p>
+                        <p class="text-base"> Do you have an account? <a href="/signin"> Login </a></p>
                     </div>
                 </form>
 

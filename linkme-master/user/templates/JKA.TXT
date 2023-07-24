@@ -3,3 +3,13 @@
 <button type="button" class="button">
 	<a href="{% url 'follow' user.Profile.id %}">Follow</a>
   </button>
+
+
+      {% for i in fav %}
+        {{i}}
+        <img src="{{i.favorites.Image.url}}" alt="">
+           
+        {% endfor %}
+        <a href="{% url 'fav' post.id %}" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
+                                           <i class="uil-favorite mr-1"></i>  Add favorites 
+                                          </a> 
