@@ -53,41 +53,38 @@
 	<!-- <a href="{% url 'favv' %}">fav</a> -->
 	<form method="post" enctype="multipart/form-data">
 		{% csrf_token %}
+						
 		<div class="row py-5 px-4">
 			<div class="col-md-5 mx-auto">
 				<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-				<a href="{% url 'Homepage' %}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<a href=""><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path fill-rule="evenodd" clip-rule="evenodd" d="M11.7071 4.29289C12.0976 4.68342 12.0976 5.31658 11.7071 5.70711L6.41421 11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H6.41421L11.7071 18.2929C12.0976 18.6834 12.0976 19.3166 11.7071 19.7071C11.3166 20.0976 10.6834 20.0976 10.2929 19.7071L3.29289 12.7071C3.10536 12.5196 3 12.2652 3 12C3 11.7348 3.10536 11.4804 3.29289 11.2929L10.2929 4.29289C10.6834 3.90237 11.3166 3.90237 11.7071 4.29289Z" fill="#000000"/>
 				</svg></a>
 				<!-- Profile widget -->
 				<div class="bg-white shadow rounded overflow-hidden">
 					<div class="px-4 pt-0 pb-4 cover">
 						<div class="media align-items-end profile-head">
-							<a href="{% url 'favv' %}"><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-								<svg width="60px" height="100px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM10.8613 9.36335L10.7302 9.59849C10.5862 9.85677 10.5142 9.98591 10.402 10.0711C10.2897 10.1563 10.1499 10.188 9.87035 10.2512L9.61581 10.3088C8.63195 10.5314 8.14001 10.6427 8.02297 11.0191C7.90593 11.3955 8.2413 11.7876 8.91204 12.572L9.08557 12.7749C9.27617 12.9978 9.37147 13.1092 9.41435 13.2471C9.45722 13.385 9.44281 13.5336 9.41399 13.831L9.38776 14.1018C9.28635 15.1482 9.23565 15.6715 9.54206 15.9041C9.84847 16.1367 10.3091 15.9246 11.2303 15.5005L11.4686 15.3907C11.7304 15.2702 11.8613 15.2099 12 15.2099C12.1387 15.2099 12.2696 15.2702 12.5314 15.3907L12.7697 15.5005C13.6909 15.9246 14.1515 16.1367 14.4579 15.9041C14.7644 15.6715 14.7136 15.1482 14.6122 14.1018L14.586 13.831C14.5572 13.5336 14.5428 13.385 14.5857 13.2471C14.6285 13.1092 14.7238 12.9978 14.9144 12.7749L15.088 12.572C15.7587 11.7876 16.0941 11.3955 15.977 11.0191C15.86 10.6427 15.3681 10.5314 14.3842 10.3088L14.1296 10.2512C13.8501 10.188 13.7103 10.1563 13.598 10.0711C13.4858 9.98592 13.4138 9.85678 13.2698 9.5985L13.1387 9.36335C12.6321 8.45445 12.3787 8 12 8C11.6213 8 11.3679 8.45446 10.8613 9.36335Z" fill="#1C274C"/>
-								</svg></a>
-							{% if request.user.Profile %}
+							
+							
 							
 							<div class="profile mr-3">
-								<img src="{{ user.Profile.profile_picture.url }}" alt="..."width="130" class="rounded mb-2 img-thumbnail">
-									<button><a href="{% url 'EditBio' request.user.Profile.id %}"
-									class="btn btn-outline-dark btn-sm btn-block">Edit profile</a></button></div>
+								
+									</div>
 							<div class="media-body mb-5 text-white">
-								<h4 class="mt-0 mb-0">{{ user.first_name }} {{ user.last_name }}</h4>
-								<p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>@{{user.username}}</p>
+								<h4 class="mt-0 mb-0"></h4>
+								<p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>@{{pro.user}}</p>
 							</div>
-							{% else %}
+							
 							<div class="profile mr-3"><img
-									src="https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1-744x744.jpg"
+									src="{{pro.profile_picture.url}}"
 									width="130" class="rounded mb-2 img-thumbnail">
-								<input id="file-input" type="file" name="{{ form.profile_picture.html_name }}">
+								<input id="file-input" type="file" name="">
 							</div>
 							<div class="media-body mb-5 text-white">
-								<h4 class="mt-0 mb-0">{{ user.first_name }} {{ user.last_name }}</h4>
-								<p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>@{{user.username}}</p>
+								<h4 class="mt-0 mb-0"></h4>
+								<p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i></p>
 							</div>
-							{% endif %}
+							
 						</div>
 					</div>
 					
@@ -95,52 +92,45 @@
 						
 					
                                         
-						{% if Profile.user %}
+						
 						<button type="button" class="button" style="width: 60px;border-style:ridge;">
-							<a href="{% url 'follow' profile.id %}">Follow</a>
+							<a href="">Follow</a>
 						  </button>
-						  {% endif %}
+						
 						<ul class="list-inline mb-0">
 							<li class="list-inline-item">
-								{% if postsc %}
-								<h5 class="font-weight-bold mb-0 d-block">{{postsc}}</h5>
+								
+								<h5 class="font-weight-bold mb-0 d-block"></h5>
 								<small class="text-muted">
 									 <i
 										class="fas fa-image mr-1"></i>Photos</small>
 							</li>
-							{%endif%}
-
-
 							<li class="list-inline-item">
-								<h5 class="font-weight-bold mb-0 d-block">{{pro.allfollower}}</h5>
-								<small class="text-muted"> <i
-										class="fas fa-user mr-1"></i>followers</small>
+								<h5 class="font-weight-bold mb-0 d-block"> </h5><small class="text-muted"> <i
+										class="fas fa-user mr-1"></i>Followers</small>
 							</li>
-							
-							
 							<li class="list-inline-item">
-								<h5 class="font-weight-bold mb-0 d-block">0</h5><small class="text-muted"> <i
-										class="fas fa-user mr-1">following</i></small>
+								<h5 class="font-weight-bold mb-0 d-block"> </h5><small class="text-muted"> <i
+										class="fas fa-user mr-1"></i>Following</small>
 							</li>
-							
 						</ul>
 						
 					</div>
 					<div class="px-4 py-3">
 						<h5 class="mb-0">About</h5>
-						{% if user.Profile %}
+						
 						<div class="p-4 rounded shadow-sm bg-light">
 
-							<p class="font-italic mb-0">{{ user.Profile.bio }}</p>
-							<p class="font-italic mb-0"> {{ user.Profile.user_name }}</p>
-							<p class="font-italic mb-0">{{ user.Profile.gender }}</p>
+							<p class="font-italic mb-0">{{pro.bio}}</p>
+							<p class="font-italic mb-0"> </p>
+							<p class="font-italic mb-0"></p>
 						</div>
-						{% else %}
+						
 						<div class="p-4 rounded shadow-sm bg-light">
-							{{ form.bio }}
+							
 						</div>
 						<button class="btn btn-outline-dark btn-sm btn-block" type="submit">Add Bio</button>
-						{% endif %}
+						
 					</div>
 	</form>
 
@@ -148,8 +138,11 @@
 						<div class="d-flex align-items-center justify-content-between mb-3">
 							<h5 class="mb-0">Recent photos</h5><a href="#" class="btn btn-link text-muted">Show all</a>
 						</div>
-						{% for i in posts %}
-						
+					
+						{% for i in post %}
+		
+		
+		
 						<div class="row">
 							<div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
 							  <img
@@ -157,7 +150,9 @@
 								class="w-100 shadow-1-strong rounded mb-4"
 								alt="Boat on Calm Water"
 							  />
+							  {{i.caption}}
 						</div>
+						
 						</div>
 						{% endfor %}
 					</div>

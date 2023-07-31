@@ -231,7 +231,7 @@
                 <div class="bg-white shadow rounded-md  -mx-2 lg:mx-0">
                     {% for i in Feed %}
 
-                    {{ i.user_dp }}
+                    {{ i.user.id}}
                     <!-- post header-->
                     <div class="flex justify-between items-center px-4 py-3">
                         <div class="flex flex-1 items-center space-x-4">
@@ -244,7 +244,7 @@
                             <a href="{% url 'follow' i.user.id %}"
                                 class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600">
                                 Follow </a>
-                            <span class="block capitalize font-semibold "> @{{ i.user }}</span>
+                            <a href="{% url 'users' i.user.id %}"><span class="block capitalize font-semibold "> @{{ i.user }}</span></a>
 
                         </div>
                         <div>
@@ -406,41 +406,7 @@
 
             <!-- right sidebar-->
 
-            <div class="lg:w-5/12">
-
-                <div class="bg-white  shadow-md rounded-md overflow-hidden">
-
-                    <div class="bg-gray-50  border-b border-gray-100 flex items-baseline justify-between py-4 px-6 ">
-                        <h2 class="font-semibold text-lg">Users You Can Follow</h2>
-                        <a href="#"> Refresh</a>
-                    </div>
-
-                    <div class="divide-gray-300 divide-gray-50 divide-opacity-50 divide-y px-4 ">
-                        {% for i in Profile %}
-                        {{i}}
-
-                        <div class="flex items-center justify-between py-3">
-                            <div class="flex flex-1 items-center space-x-4">
-                                <a href="profile.html">
-                                    <img src="{% url 'i.profile_picture.url ' %}"
-                                        class="bg-gray-200 rounded-full w-10 h-10">
-                                </a>
-                                <div class="flex flex-col">
-                                    <span class="block capitalize font-semibold"> </span>
-                                    <span class="block capitalize text-sm"> 100.5k followers </span>
-                                </div>
-                            </div>
-
-                            <a href="#"
-                                class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 ">
-                                Follow </a>
-                        </div>
-
-                        {% endfor %}
-                    </div>
-
-                </div>
-
+           
 
 
 

@@ -7,10 +7,14 @@ class Profile(models.Model):
     profile_picture = models.ImageField(upload_to='Dp' )
     folower=models.ManyToManyField(User,related_name="follow")
 
+    def __str__(self) -> str:
+        return self.bio
+
     @property
     def allfollower(self):
-        return self.folower
-    
+        print(self.folower.count())
+        return self.folower.count()
+    @property
     def followeduser(self):
         fl=self.folower.all()
         users=[u.username for u in fl]

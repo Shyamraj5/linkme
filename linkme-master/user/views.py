@@ -1,3 +1,4 @@
+from typing import Any, Dict
 from django.shortcuts import render
 from django.shortcuts import render,redirect
 from django.views.generic import View,TemplateView,CreateView,UpdateView,FormView,DeleteView,ListView
@@ -9,6 +10,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 
 #==== Decorator ====#
 def signin_required(fn):
@@ -18,8 +20,9 @@ def signin_required(fn):
         else:
             return redirect ("Homepage")
     return wrapper
+dec=[signin_required,never_cache]
 
-@method_decorator(signin_required,name='dispatch')
+@method_decorator(dec,name='dispatch')
 class UserHome(CreateView):
     template_name="home.html"
     form_class=PostForm
@@ -50,15 +53,15 @@ def addcomment(request,*args,**kwargs):
 
      
 
-@method_decorator(signin_required,name='dispatch')
+@method_decorator(dec,name='dispatch')
 class DeletePost(View):
     def get(self,request,*args,**kwargs):
         eid=kwargs.get("eid")
-        post=Posts.objects.get(id=eid)
+        post=Posts.objects.filter(id=eid,user=self.request.user)
         post.delete()
         return redirect('Homepage')
     
-@method_decorator(signin_required,name='dispatch')
+@method_decorator(dec,name='dispatch')
 class ProfileEdit(CreateView):
     form_class=Profileform
     template_name="setting.html"
@@ -70,9 +73,10 @@ class ProfileEdit(CreateView):
         self.object = form1.save()
         messages.success(self.request,"Bio Added")
         return super().form_valid(form1)
+     
     
     
-@method_decorator(signin_required,name='dispatch')
+@method_decorator(dec,name='dispatch')
 class ProfileView(CreateView):
     form_class=Profileform
     template_name="profile.html"
@@ -89,7 +93,8 @@ class ProfileView(CreateView):
             context=super().get_context_data(**kwargs)
             context["posts"]=Posts.objects.filter(user=self.request.user)
             context["postsc"]=Posts.objects.filter(user=self.request.user).count()
-            context["follow"]= Profile.objects.all()
+            context["pro"]=Profile.objects.get(user=self.request.user)
+            
             
             return context
      
@@ -98,9 +103,10 @@ class ProfileView(CreateView):
 def following(req,*args, **kwargs):
     fid=kwargs.get("fid")
     post=Profile.objects.get(id=fid)
+    
     user=req.user
     post.folower.add(user)
-    post.save()
+    # post.save()
     return redirect ("Homepage")
 
 
@@ -118,7 +124,7 @@ def addlike(req,*args, **kwargs):
   
 
 
-@method_decorator(signin_required,name='dispatch')
+@method_decorator(dec,name='dispatch')
 class BioEdit(UpdateView):
     form_class=Profileform
     model=Profile
@@ -226,6 +232,22 @@ class Fav_list(TemplateView):
         context["fav"]=Favposts.objects.filter(user=self.request.user)
         
         return context
+    
+class userprofiles(TemplateView):
+   template_name="userprofileview.html"
+   def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+       id=kwargs.get("id")
+       context= super().get_context_data(**kwargs)
+       context["post"]=Posts.objects.filter(user=id)
+       context["pro"]=Profile.objects.get(user=id)
+       
+       return context
+  
+       
+       
+       
+
+    
 
 
 

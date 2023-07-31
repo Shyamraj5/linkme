@@ -15,7 +15,8 @@ urlpatterns = [
     path("follow/<int:fid>",following,name="follow"),
     path("myfav/",Fav_list.as_view(),name="favv"),
     path("cha/",ChangePassword.as_view(),name='change'),
-    path('delcart/<int:id>',Delfav,name="delfav")
+    path('delfav/<int:id>',Delfav,name="delfav"),
+    path('viewuser/<int:id>',userprofiles.as_view(),name='users'),
 
     
    
